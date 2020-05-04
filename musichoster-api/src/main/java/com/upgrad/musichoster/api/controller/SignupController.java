@@ -26,6 +26,25 @@ public class SignupController {
             throws SignUpRestrictedException {
 
         final UserEntity userEntity = new UserEntity();
-        System.out.print("Commit");
+         
+        userEntity.setFirstName(signupUserRequest.getFirstName());
+
+        userEntity.setLastName(signupUserRequest.getLastName());
+
+        userEntity.setUuid(UUID.randomUUID().toString());
+
+        userEntity.setEmail(signupUserRequest.getEmailAddress());
+
+        userEntity.setMobilePhone(signupUserRequest.getMobileNumber());
+
+        userEntity.setPassword(signupUserRequest.getPassword());
+
+        userEntity.setSalt("random");
+        userEntity.setRole("administrator");
+
+        final UserEntity createUserEntity = signupBusinessService.signup(userEntity);
+        SignupUserResponse userResponse = new SignupUserResponse().id(createUserEntity.getUuid()).status("Thank you for registering. You are registered");
+        return new ResponseEntity<>(userResponse,HttpStatus.CREATED);
+
     }
 }
