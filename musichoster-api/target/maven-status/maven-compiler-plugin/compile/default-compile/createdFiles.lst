@@ -1,2 +1,2 @@
-com/upgrad/musichoster/api/model/MusicUploadResponse.class
-com/upgrad/musichoster/api/model/MusicDetailsResponse.class
+io/swagger/api/NotFoundException.class
+io/swagger/api/ApiException.class
