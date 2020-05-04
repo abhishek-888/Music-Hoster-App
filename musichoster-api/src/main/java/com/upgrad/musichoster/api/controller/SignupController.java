@@ -26,6 +26,6 @@ public class SignupController {
             throws SignUpRestrictedException {
 
         final UserEntity userEntity = new UserEntity();
-
+        System.out.print("Commit");
     }
 }
