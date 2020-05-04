@@ -25,5 +25,11 @@ public class SignupBusinessServiceImpl implements SignupBusinessService {
 		Pattern pattern = Pattern.compile(regex);
 		Matcher matcher = pattern.matcher(userEntity.getEmail());
 
+		String[] encyrptedText = passwordCryptographyProvider.encrypt(userEntity.getPassword());
+
+		userEntity.setSalt(encyrptedText[0]);
+		userEntity.setPassword(encyrptedText[1]);
+		return userDao.createUser(userEntity);
+
 	}
 }
