@@ -15,8 +15,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 	@Autowired private MusicDao musicDao;
 
-	@Override public MusicEntity getMusic(final String musicUuid, final String authorization)
+	@Override 
+	public MusicEntity getMusic(final String musicUuid, final String authorization)
 			throws MusicNotFoundException, UnauthorizedException, UserNotSignedInException {
+
 		UserAuthTokenEntity userAuthTokenEntity = musicDao.getUserAuthToken(authorization);
 		String role = userAuthTokenEntity.getUser().getRole();
 	}
