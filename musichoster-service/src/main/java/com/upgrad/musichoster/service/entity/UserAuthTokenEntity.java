@@ -26,11 +26,24 @@ public class UserAuthTokenEntity implements Serializable {
     @ManyToOne
     @JoinColumn(name = "USER_ID")
     private UserEntity user;
+    public /**
+     * @return the user
+     */
+    public UserEntity getUser() {
+        return user;
+    }
 
     @Column(name = "ACCESS_TOKEN")
     @NotNull
     @Size(max = 500)
     private String accessToken;
+
+    public /**
+     * @return the accessToken
+     */
+    public String getAccessToken() {
+        return accessToken;
+    }
 
     @Column(name = "LOGIN_AT")
     @NotNull

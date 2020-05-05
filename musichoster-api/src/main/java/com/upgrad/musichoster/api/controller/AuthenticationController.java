@@ -36,5 +36,16 @@ public class AuthenticationController {
 
         UserEntity user = userAuthToken.getUser();
 
+        AuthorizedUserResponse authorizedUserResponse = new AuthorizedUserResponse()
+        .firstName(user.getFirstName())
+        .lastName(user.getLastName()).emailAddress(user.getEmail())
+        .mobilePhone(user.getMobilePhone())
+        .id(UUID.fromString(user.getUuid()))
+        .lastLoginTime(user.getLastLoginAt()).role(user.getRole());
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Entery-Token", userAuthToken.getAccessToken());
+        return new ResponseEntity<AuthorizedUserResponse>(authorizedUserResponse, headers, HttpStatus.OK);
+
     }
 }
