@@ -33,6 +33,13 @@ public class UserAuthTokenEntity implements Serializable {
         return user;
     }
 
+    /**
+     * @param user the user to set
+     */
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
     @Column(name = "ACCESS_TOKEN")
     @NotNull
     @Size(max = 500)
@@ -45,13 +52,35 @@ public class UserAuthTokenEntity implements Serializable {
         return accessToken;
     }
 
+    /**
+     * @param accessToken the accessToken to set
+     */
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
+    }
+
     @Column(name = "LOGIN_AT")
     @NotNull
     private ZonedDateTime loginAt;
 
+    /**
+     * @param loginAt the loginAt to set
+     */
+    public void setLoginAt(ZonedDateTime loginAt) {
+        this.loginAt = loginAt;
+    }
+    
+
     @Column(name = "EXPIRES_AT")
     @NotNull
     private ZonedDateTime expiresAt;
+
+    /**
+     * @param expiresAt the expiresAt to set
+     */
+    public void setExpiresAt(ZonedDateTime expiresAt) {
+        this.expiresAt = expiresAt;
+    }
 
     @Column(name = "LOGOUT_AT")
     private ZonedDateTime logoutAt;

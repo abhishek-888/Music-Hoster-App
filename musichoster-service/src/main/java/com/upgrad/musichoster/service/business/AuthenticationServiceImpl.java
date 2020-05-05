@@ -26,8 +26,38 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 	public UserAuthTokenEntity authenticate(String username, String password)
 			throws AuthenticationFailedException {
 		UserEntity userEntity = userDao.getUserByEmail(username);
+		if (userEntity == null)
+			throw new AuthenticationFailedException("ATH-001", "Cannot find Username");
 
 		final String encryptedPassword = CryptographyProvider.encrypt(password, userEntity.getSalt());
+
+		if (encryptedPassword.equals(userEntity.getPassword())) {
+			UserAuthTokenEntity userAuthToken = new UserAuthTokenEntity();
+			userAuthToken.setUser(userEntity);
+
+			JwtTokenProvider jwtTokenProvider = new JwtTokenProvider(encryptedPassword);
+
+			final ZonedDateTime now = ZonedDateTime.now();
+
+
+			final ZonedDateTime expiresAt = now.plusHours(3);
+			userAuthToken.setAccessToken(jwtTokenProvider.generateToken(userEntity.getUuid(), now, expiresAt));
+			userAuthToken.setLoginAt(now);
+			userAuthToken.setExpiresAt(expiresAt);
+
+
+
+			userDao.createAuthToken(userAuthToken);
+			userDao.updateUser(userEntity);
+
+			userEntity.setLastLoginAt(now);
+
+			
+
+			return userAuthToken;
+		} else {
+			throw new AuthenticationFailedException("ATH-002", "Wrong Password, Try again");
+		}
 
 	}
 }
