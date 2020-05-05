@@ -7,7 +7,20 @@ public class MusicNotFoundException extends Exception {
 
 
     private final String code;
+
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
     private final String errorMessage;
+    /**
+     * @return the errorMessage
+     */
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 
 
     public MusicNotFoundException(final String code, final String errorMessage) {
@@ -31,11 +44,5 @@ public class MusicNotFoundException extends Exception {
         super.printStackTrace(s);
     }
 
-    public String getCode() {
-        return code;
-    }
 
-    public String getErrorMessage() {
-        return errorMessage;
-    }
 }

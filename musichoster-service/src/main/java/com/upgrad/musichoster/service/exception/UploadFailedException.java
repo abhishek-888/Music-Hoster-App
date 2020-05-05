@@ -5,7 +5,19 @@ import java.io.PrintWriter;
 
 public class UploadFailedException extends Exception {
     private final String code;
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
     private final String errorMessage;
+    /**
+     * @return the errorMessage
+     */
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 
     public UploadFailedException(final String code, final String errorMessage) {
         this.code = code;
