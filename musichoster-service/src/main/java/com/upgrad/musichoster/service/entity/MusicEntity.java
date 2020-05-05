@@ -13,9 +13,12 @@ public class MusicEntity implements Serializable {
 
 	@Id @Column(name = "ID") @GeneratedValue(strategy = GenerationType.IDENTITY) private long id;
 	
+	/**
+	 * @return the id
+	 */
 	public long getId() {
-        return id;
-    }
+		return id;
+	}
 
 	@Column(name = "UUID") @Size(max = 64) private String uuid;
 

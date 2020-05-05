@@ -26,5 +26,18 @@ public class AuthenticationFailedException extends Exception {
     public void printStackTrace(PrintWriter s) {
         super.printStackTrace(s);
     }
+    /**
+     * @return the code
+     */
+    public String getCode() {
+        return code;
+    }
+
+    /**
+     * @return the errorMessage
+     */
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 
 }
