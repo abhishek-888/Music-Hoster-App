@@ -28,7 +28,14 @@ public class MusicUploadController {
             UploadFailedException, UnsupportedEncodingException {
         final MusicEntity musicEntity = new MusicEntity();
 
+        musicEntity.setDescription(musicUploadRequest.getDescription());
+        musicEntity.setMusic(musicUploadRequest.getMusic());
+        musicEntity.setName(musicUploadRequest.getName());
+
         final MusicEntity createdmusicEntity = musicUploadService.upload(musicEntity, authorization);
+        MusicUploadResponse uploadResponse = new MusicUploadResponse().id(String.valueOf(musicEntity.getId())).status("Upload Succesful");
+
+        return new ResponseEntity<>(uploadResponse,HttpStatus.OK);
 
     }
 }
